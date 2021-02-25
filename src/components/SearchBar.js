@@ -1,16 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-const SearchBar = () => {
-  const [textInput, setTextInput] = useState("");
-
-  const handleChange = (e) => {
-    setTextInput(e.target.value);
-  };
-  console.log(textInput);
+const SearchBar = ({ query, handleChange }) => {
   return (
     <div>
-      <input onChange={handleChange} type="text" />
-      <button type="submit">Get User Repos</button>
+      <input value={query} onChange={handleChange} type="text" />
     </div>
   );
 };
