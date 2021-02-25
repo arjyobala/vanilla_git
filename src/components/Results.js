@@ -1,11 +1,14 @@
 import React from "react";
 
-const Results = ({ list }) => {
+const Results = ({ org, list }) => {
   return (
     <div>
       {list.map((item) => (
-        <li key={item.id}>{item.login}</li>
+        <div>
+          <a href={item.html_url}>{item.name}</a>
+        </div>
       ))}
+      {org.login}
     </div>
   );
 };
