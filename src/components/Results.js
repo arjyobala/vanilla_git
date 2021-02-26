@@ -26,7 +26,7 @@ const Results = ({ list, response }) => {
                 </tr>
                 <tbody>
                   <tr>
-                    <td style={{ width: "150px" }}>
+                    <td style={{ width: "200px" }}>
                       <a target="_blank" rel="noreferrer" href={item.html_url}>
                         {item.name}
                       </a>
