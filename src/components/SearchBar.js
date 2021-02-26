@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchBar = ({ query, handleChange }) => {
+const SearchBar = ({ query, handleChange, onKeyUp }) => {
   return (
     <div>
       <input
@@ -9,6 +9,7 @@ const SearchBar = ({ query, handleChange }) => {
         onChange={handleChange}
         type="text"
         placeholder="Enter Organization Name"
+        onKeyUp={onKeyUp}
       />
     </div>
   );

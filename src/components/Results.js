@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import data from "../utilities/SampleData";
-import styles from "./results.module.css";
-
+import React from "react";
+import "./results.module.css";
 const Results = ({ list, response }) => {
   return (
     <div>
@@ -20,16 +18,16 @@ const Results = ({ list, response }) => {
                   padding: "auto, 100px",
                 }}
               >
+                <tr>
+                  <th>Organization</th>
+                  <th>Description</th>
+                  <th>Stargazers</th>
+                  <th>Watchers</th>
+                </tr>
                 <tbody>
                   <tr>
-                    <th>Organization</th>
-                    <th>Description</th>
-                    <th>Stargazers</th>
-                    <th>Watchers</th>
-                  </tr>
-                  <tr>
                     <td style={{ width: "150px" }}>
-                      <a target="_blank" href={item.html_url}>
+                      <a target="_blank" rel="noreferrer" href={item.html_url}>
                         {item.name}
                       </a>
                     </td>
@@ -53,7 +51,3 @@ const Results = ({ list, response }) => {
 };
 
 export default Results;
-
-// Results.defaultProps = {
-//   list: [{ name: "one" }, { name: "two" }],
-// };

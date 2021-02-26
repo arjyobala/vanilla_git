@@ -16,14 +16,32 @@ const SearchRepos = () => {
     setQuery(e.target.value);
   };
 
+  //Handle fetching on click of Search button
   const handleClick = () => {
     axios.get(`https://api.github.com/orgs/${query}`).then((res) => {
       setOrg(res.data);
     });
     if (org) {
       getRepoList(query);
+      setChecked(false);
     }
   };
+
+  //Handle fetching on Enter key press
+
+  const handleKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      axios.get(`https://api.github.com/orgs/${query}`).then((res) => {
+        setOrg(res.data);
+      });
+      if (org) {
+        getRepoList(query);
+        setChecked(false);
+      }
+    }
+  };
+
+  //Get list of repos for selected organization
 
   const getRepoList = (query) => {
     axios
@@ -67,34 +85,41 @@ const SearchRepos = () => {
     <div>
       <div
         style={{
-          display: "flex",
           textAlign: "center",
           margin: "auto",
           display: "inline-flex",
           paddingBottom: "10px",
         }}
       >
-        <SearchBar query={query} handleChange={handleChange} />
+        <SearchBar
+          query={query}
+          handleChange={handleChange}
+          onKeyUp={handleKeyPress}
+        />
         <button onClick={handleClick}>Search</button>
       </div>
-      <div>
-        Sort desc stargazer:{" "}
-        <input
-          type="radio"
-          value="stargazers"
-          id="stargazer"
-          name="stargazers_count"
-          checked={!checked}
-          onClick={handleRadioStargazerClick}
-        ></input>
-        Sort alphabetically(Descending):{" "}
-        <input
-          name="alphabetical"
-          type="radio"
-          id="desc"
-          checked={checked}
-          onClick={handleRadioClick}
-        ></input>
+      <div style={{ display: "flex", gap: "20px", justifyContent: "center" }}>
+        <div>
+          Sort desc stargazer:{" "}
+          <input
+            type="radio"
+            value="stargazers"
+            id="stargazer"
+            name="stargazers_count"
+            checked={!checked}
+            onClick={handleRadioStargazerClick}
+          ></input>
+        </div>
+        <div>
+          Sort alphabetically(Descending):{" "}
+          <input
+            name="alphabetical"
+            type="radio"
+            id="desc"
+            checked={checked}
+            onClick={handleRadioClick}
+          ></input>
+        </div>
       </div>
       <Results org={org} list={descList} response={response} />
     </div>
